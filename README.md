@@ -1,7 +1,7 @@
-WritesDown CMS Based on Yii2
+brt_pms Based on Yii2
 ============================
 
-WritesDown is Content Management System which is developed using [Yii2 Application Advanced](https://github.com/yiisoft/yii2-app-advanced/).
+brt_pms is Content Management System which is developed using [Yii2 Application Advanced](https://github.com/yiisoft/yii2-app-advanced/).
 The application consists of three tiers: front end, back end, and console.
 
 Application frontend is consumed by visitor of the website and search engine depends on application settings.
@@ -10,10 +10,10 @@ Backend application, more complex application, has roles consists of Super Admin
 Contributor, and Subscriber.
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg)](http://www.yiiframework.com/)
-[![Total Downloads](https://poser.pugx.org/writesdown/app-cms/downloads)](https://packagist.org/packages/writesdown/app-cms)
-[![Build Status](https://travis-ci.org/writesdown/app-cms.svg?branch=master)](https://travis-ci.org/writesdown/app-cms)
+[![Total Downloads](https://poser.pugx.org/brt_pms/app-cms/downloads)](https://packagist.org/packages/brt_pms/app-cms)
+[![Build Status](https://travis-ci.org/brt_pms/app-cms.svg?branch=master)](https://travis-ci.org/brt_pms/app-cms)
 [![Dependency Status](https://www.versioneye.com/user/projects/568b0e86eb4f47003c001066/badge.svg)](https://www.versioneye.com/user/projects/568b0e86eb4f47003c001066)
-[![Code Climate](https://codeclimate.com/github/writesdown/app-cms/badges/gpa.svg)](https://codeclimate.com/github/writesdown/app-cms)
+[![Code Climate](https://codeclimate.com/github/brt_pms/app-cms/badges/gpa.svg)](https://codeclimate.com/github/brt_pms/app-cms)
 
 Feature
 -------
@@ -79,17 +79,17 @@ widgets                  contains widgets
 
 Installation
 ------------
-Like Yii2 Application Advanced, WritesDown CMS also use composer for installation, just type the following 
+Like Yii2 Application Advanced, brt_pms CMS also use composer for installation, just type the following 
 to the command line.
 
 ```
 composer global require "fxp/composer-asset-plugin:~1.1.1"
-composer create-project --prefer-dist --stability=dev writesdown/app-cms writesdown
+composer create-project --prefer-dist --stability=dev brt_pms/app-cms brt_pms
 ```
 
 The first command installs the composer asset plugin which allows managing bower and npm package dependencies through Composer. 
 You only need to run this command once for all. 
-The second command installs the advanced application in a directory named writesdown.
+The second command installs the advanced application in a directory named brt_pms.
 You can choose a different directory name if you want.
 
 Getting Started
@@ -106,15 +106,15 @@ Create a new database for the application, then edit the configuration on "commo
 ```php
 'db' => [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=writesdown',
+    'dsn' => 'mysql:host=localhost;dbname=brt_pms',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
-    'tablePrefix' => 'wd_'
+    'tablePrefix' => 'pms_'
 ],
 ```
     
-The "writesdown" above is the database that has been built up, please edit it to your database. 
+The "brt_pms" above is the database that has been built up, please edit it to your database. 
 After that, write the following code to initialize the database.
 
 ```
@@ -122,10 +122,10 @@ yii migrate
 ```
 
 Go to the admin panel http://host/backend/web/ and change the username and password. 
-The default username and password is superadmin/superadmin.
+The default username and password is superadmin/superadmin and tika/tika123
 
 Done, Enjoy!
 
 Demo
 ----
-Please visit [http://demo.writesdown.com/](http://demo.writesdown.com/) for the demo.
+Please visit [http://bentray.work/brt_pms/](http://bentray.work/brt_pms/) for the demo.

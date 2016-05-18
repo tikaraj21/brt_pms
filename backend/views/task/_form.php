@@ -32,8 +32,15 @@ use dosamigos\datepicker\DatePicker;
 	   <div class="col-md-4">
 	   
 	   <?php $listData = ArrayHelper::map(User::find()->orderBy('full_name')->all(), 'id', 'full_name') ?>
-	   
-	   <?= $form->field($model, 'assign_to')->dropDownList($listData, [
+	    <?php
+	    $disable = true;
+	     if (Yii::$app->user->can('superadmin')
+    			|| (Yii::$app->user->can('administrator')
+    					&& !Yii::$app->authManager->checkAccess($model->id, 'administrator'))
+    	) {
+    		$disable = false;
+	    }?>
+	   <?= $form->field($model, 'assign_to')->dropDownList($listData, ['disabled' => $disable], [
 	    		'prompt' => 'Select User',
 	   		'onchange'=>'
 	             $.post("'.Yii::$app->urlManager->createUrl('task/loaddatas?id='.$model->assign_to).

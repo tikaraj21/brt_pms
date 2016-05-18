@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Project;
 use app\models\Schedule;
-
+use yii\web\ForbiddenHttpException;
 /**
  * TaskController implements the CRUD actions for Task model.
  */
@@ -65,6 +65,10 @@ class TaskController extends Controller
      */
     public function actionCreate()
     {
+    	 if (Yii::$app->user->can('superadmin')
+    			|| (Yii::$app->user->can('administrator')
+    					&& !Yii::$app->authManager->checkAccess($model->id, 'administrator'))
+    	    	) {
         $model = new Task();
    
         if ($model->load(Yii::$app->request->post()) ) {
@@ -73,10 +77,13 @@ class TaskController extends Controller
         	$description_info = 'Create Task '.$model->task_title;
         	AuditlogController::AuditLog($description_info,$model->task_id);
             return $this->redirect(['index', 'id' => $model->task_id]);
-        } else {
+        }else {
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+      }else {
+        	throw new ForbiddenHttpException(Yii::t('writesdown', 'You are not allowed to perform this action.'));
         }
     }
 

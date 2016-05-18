@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Project;
 use dosamigos\datepicker\DatePicker;
 use common\models\User;
+use app\models\Timeline;
 /* @var $this yii\web\View */
 /* @var $model app\models\Timeline */
 /* @var $form yii\widgets\ActiveForm */
@@ -75,8 +76,14 @@ use common\models\User;
 	    ] );?>
 		<?php 
 	     $disable = true;
+	     $id = Yii::$app->user->identity->id;
 	     if($model->isNewRecord!='1'){ 
+	     	if (Yii::$app->user->can('superadmin') || ($model->audit_by == $id)
+	     			|| (Yii::$app->user->can('administrator')
+	     					&& !Yii::$app->authManager->checkAccess($model->id, 'administrator'))
+	     	) {
 	     	$disable = false;
+	     	}
 	     }?>
 	    <?= $form->field($model, 'audit')->dropDownList(['No' => 'No','Yes' => 'Yes'], ['disabled' => $disable]) ?>
 	    
