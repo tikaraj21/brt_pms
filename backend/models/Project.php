@@ -64,7 +64,7 @@ class Project extends \yii\db\ActiveRecord
             'project_date' => 'Project Date',
             'project_due_date' => 'Project Due Date',
             'status' => 'Status',
-            'complate_percent' => 'Complate Percent',
+            'complate_percent' => 'Complete Percent',
             'crtd_by' => 'Crtd By',
             'crtd_dt' => 'Crtd Dt',
             'updt_dt' => 'Updt Dt',

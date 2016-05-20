@@ -64,7 +64,7 @@ class Task extends \yii\db\ActiveRecord
             'task_date' => 'Task Date',
             'task_due_date' => 'Task Due Date',
             'status' => 'Status',
-            'complate_percent' => 'Complate Percent',
+            'complate_percent' => 'Complete Percent',
             'crtd_by' => 'Crtd By',
             'crtd_dt' => 'Crtd Dt',
             'updt_dt' => 'Updt Dt',

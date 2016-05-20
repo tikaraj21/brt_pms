@@ -64,7 +64,7 @@ class Timeline extends \yii\db\ActiveRecord
             'work_hour' => 'Work Hour',
             'remarks' => 'Remarks',
             'status' => 'Status',
-            'complate_percent' => 'Complate Percent',
+            'complate_percent' => 'Complete Percent',
             'crtd_by' => 'Crtd By',
             'crtd_dt' => 'Crtd Dt',
             'updt_dt' => 'Updt Dt',

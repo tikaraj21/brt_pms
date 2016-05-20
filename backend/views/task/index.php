@@ -93,15 +93,24 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
            
             'task_title',
-//     		[
-//     		'class' => 'kartik\grid\EditableColumn',
-//     		'attribute' => 'task_title',
-// 		    'headerOptions' => ['class' => 'kv-sticky-column'],
-// 		    'contentOptions' => ['class' => 'kv-sticky-column'],
-		   
-//     		],
-    		
-    		
+     		 /*
+     				[
+     						'class' => 'kartik\grid\EditableColumn',
+     						'attribute'=>'task_title',
+     						//'label' => 'Task Title',
+     						'vAlign'=>'middle',
+     						'editableOptions' => function ($model, $key, $index) {
+					                return [
+					                    'header' => 'Task Title ',
+					                    'placement' => 'left',
+					                  //  'inputType' => \kartik\editable\Editable::INPUT_TEXTAREA,
+					                    'formOptions' => [
+					                        'action' => ['index'],
+					                    ]
+					                ];
+					            },
+     						],
+     					*/	
             'task_type',
             'task_hour',
             // 'task_details:ntext',

@@ -55,7 +55,7 @@ class ProjectController extends Controller
     		 	
     			}else {
     				$model = $this->findModel($projects->project_id);
-    				$model->complate_percent='0%';
+    				$model->complate_percent='WIP';
     					
     				$model->save(TRUE);
     			}

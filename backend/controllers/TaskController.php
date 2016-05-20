@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\Project;
 use app\models\Schedule;
 use yii\web\ForbiddenHttpException;
+use yii\helpers\Json;
 /**
  * TaskController implements the CRUD actions for Task model.
  */
@@ -39,7 +40,61 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+/*
+        // Validate if there is an editable input saved via AJAX
+        if (Yii::$app->request->post('hasEditable')) {
+        	$id = $_POST['editableKey'];
+        
+        	$model = $this->findModel($id);
+        	$out = Json::encode(['output'=>'', 'message'=>'']);
+        	$post = [];
+        	$posted = current($_POST['Task']);
+        	$post['Task'] = $posted;
+        
+        	// Load model like any single model validation
+        	if ($model->load($post)) {
+        		// When doing $result = $model->save(); I get a return value of false
+        		$model->save();
+        		
+        		$out = Json::encode(['output'=>$output, 'message'=>'']);
+        	}
+        	// Return AJAX JSON encoded response and exit
+        	echo $out;
+        	return;
+        	
+        }
+        */
+        if(Yii::$app->request->post('hasEditable'))
+        {
+        	$model =new Task();
+        	$bookId = Yii::$app->request->post('editableKey');
+        	$model = Task::findOne($bookId);
+        
+        
+        	$post = [];
+        	$posted = current($_POST['Task']);
+        	 $post = ['Task' => $posted];
+        	
+        	// Load model like any single model validation
+        	if ($model->load($post))
+        	{
+        	
+        		// When doing $result = $model->save(); I get a return value of false
+        		if($model->save())
+        		{
+        			$output = '';
+        			if (isset($posted['task_title']))
+        			{
+        				$output =  $model->task_title;
+        			}
+        			$out = Json::encode(['output'=>$output, 'message'=>'']);
+        		}
+        	}
+        	// Return AJAX JSON encoded response and exit
+        	echo $out;
+        	return;
+        }
+        // Non-AJAX - render the grid by default
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -108,27 +163,7 @@ class TaskController extends Controller
         }
     }
 
-    public function actionsEdit()
-    {
-    	return ArrayHelper::merge(parent::actions(), [
-    			'editbook' => [                                       // identifier for your editable column action
-    					'class' => EditableColumnAction::className(),     // action class name
-    					'modelClass' => Book::className(),                // the model for the record being edited
-    					'outputValue' => function ($model, $attribute, $key, $index) {
-    						return (int) $model->$attribute / 100;      // return any custom output value if desired
-    					},
-    					'outputMessage' => function($model, $attribute, $key, $index) {
-    						return '';                                  // any custom error to return after model save
-    					},
-    					'showModelErrors' => true,                        // show model validation errors after save
-    					'errorOptions' => ['header' => '']                // error summary HTML options
-    					// 'postOnly' => true,
-    					// 'ajaxOnly' => true,
-    					// 'findModel' => function($id, $action) {},
-    					// 'checkAccess' => function($action, $model) {}
-    	]
-    	]);
-    }
+  
     /**
      * Deletes an existing Task model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
