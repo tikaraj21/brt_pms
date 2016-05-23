@@ -12,6 +12,7 @@ use app\models\Project;
 use app\models\Schedule;
 use yii\web\ForbiddenHttpException;
 use yii\helpers\Json;
+use common\models\User;
 /**
  * TaskController implements the CRUD actions for Task model.
  */
@@ -129,6 +130,18 @@ class TaskController extends Controller
         if ($model->load(Yii::$app->request->post()) ) {
         	$model->task_date = date('Y-m-d');
         	$model->save();
+        	if ($model->save()){
+        		$user = User::find()->where(['id'=>$model->assign_to])->one();
+        		$from = 'brt_pms@bentray.work';
+        		$to = $user->email;
+        		$subject = 'Task Create';
+        		$body['full_name'] = $user->full_name;
+        		$body['title'] = $model->task_title;
+        		$body['details'] = $model->task_details;
+        		$body['id'] = $model->task_id;
+        		Yii::$app->EmailComponent->SendEmail($from, $to, $subject, $body);
+        		
+        	}
         	$description_info = 'Create Task '.$model->task_title;
         	AuditlogController::AuditLog($description_info,$model->task_id);
             return $this->redirect(['index', 'id' => $model->task_id]);

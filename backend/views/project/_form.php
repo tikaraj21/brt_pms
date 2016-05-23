@@ -11,10 +11,13 @@ use dosamigos\datepicker\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="project-form row">
-
+<div class="project-form">
+<div class=" panel panel-default">
+  <div class="panel-heading"><h4><strong><?= $this->title?></strong></h4></div>
+	  <div class="panel-body row">
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-7">
+    <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
     <div class="row">
    <div class="col-md-6">
     <?= $form->field($model, 'project_no')->textInput(['maxlength' => true]) ?>
@@ -87,9 +90,10 @@ use dosamigos\datepicker\DatePicker;
 		]);?>
    </div>
    </div>
-   
+   </div>
   </div>
   <div class="col-md-5">
+  <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
     <?= $form->field($model, 'project_details')->textarea(['rows' => 5]) ?>
     <div class="row">
    <div class="col-md-6" style="margin-top: -10px;">
@@ -102,11 +106,12 @@ use dosamigos\datepicker\DatePicker;
    </div>
    </div>
    </div>
-   <div class="col-md-6">
+ <br>
     <div class="form-group pull-right">
         <?= Html::submitButton($model->isNewRecord ? 'Create <i class="fa fa-product-hunt"></i>' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
    </div>
     <?php ActiveForm::end(); ?>
-
+</div>
+</div>
 </div>

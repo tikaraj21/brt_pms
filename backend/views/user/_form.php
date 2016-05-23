@@ -14,9 +14,10 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<div class="user-form">
+<div class="user-form row">
     <?php $form = ActiveForm::begin(['id' => 'user-form']) ?>
-
+<div class="col-md-6">
+	 <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
     <?= $form->field($model, 'username')->textInput([
         'maxlength'   => 255,
         'placeholder' => $model->getAttributeLabel('username'),
@@ -36,7 +37,10 @@ use yii\widgets\ActiveForm;
         'maxlength'   => 255,
         'placeholder' => $model->getAttributeLabel('full_name'),
     ]) ?>
-
+</div>
+</div>
+<div class="col-md-6">
+	 <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
     <?= $form->field($model, 'display_name')->textInput([
         'maxlength'   => 255,
         'placeholder' => $model->getAttributeLabel('display_name'),
@@ -56,12 +60,14 @@ use yii\widgets\ActiveForm;
 
     echo $form->field($model, 'role')->dropDownList($role);
     ?>
-
+<br><br>
     <div class="form-group">
         <?= Html::submitButton(
             $model->isNewRecord ? Yii::t('writesdown', 'Save') : Yii::t('writesdown', 'Update'),
             ['class' => $model->isNewRecord ? 'btn-flat btn btn-success' : 'btn-flat btn btn-primary']
         ) ?>
+    </div>
+    </div>
     </div>
     <?php ActiveForm::end() ?>
 

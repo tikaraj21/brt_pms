@@ -11,9 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-create">
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+	    <?= $this->render('_form', [
+	        'model' => $model,
+	    ]) ?>
+	   
 </div>

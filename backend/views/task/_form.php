@@ -15,6 +15,7 @@ use dosamigos\datepicker\DatePicker;
   <div class="row">
     <?php $form = ActiveForm::begin(); ?>
 	   <div class="col-md-4">
+	   <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
 	    <?php $listData = ArrayHelper::map(Project::find()->orderBy('project_title')->all(), 'project_id', 'project_title') ?>
 	    
 	    <?= $form->field($model, 'project_id')->dropDownList($listData, [
@@ -26,32 +27,25 @@ use dosamigos\datepicker\DatePicker;
 	
 	   <?= $form->field($model, 'task_hour')->textInput() ?>
 	
-	    <?= $form->field($model, 'task_details')->textarea(['rows' => 6]) ?>
-	    
+	    <?= $form->field($model, 'task_details')->textarea(['rows' => 3]) ?>
+	    </div>
 	   </div>
 	   <div class="col-md-4">
-	   
+	   <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px;  border-radius:5px;">
 	   <?php $listData = ArrayHelper::map(User::find()->orderBy('full_name')->all(), 'id', 'full_name') ?>
-	    <?php
-	    $disable = true;
-	     if (Yii::$app->user->can('superadmin')
-    			|| (Yii::$app->user->can('administrator')
-    					&& !Yii::$app->authManager->checkAccess($model->id, 'administrator'))
-    	) {
-    		$disable = false;
-	    }?>
-	   <?= $form->field($model, 'assign_to')->dropDownList($listData, ['disabled' => $disable], [
+	   
+	   <?= $form->field($model, 'assign_to')->dropDownList($listData,[
 	    		'prompt' => 'Select User',
 	   		'onchange'=>'
 	             $.post("'.Yii::$app->urlManager->createUrl('task/loaddatas?id='.$model->assign_to).
 	   			             '"+$(this).val(),function( data )
 	                   {
-	                              $( "#demo1" ).html( data );
+	                              $( "#demos" ).html( data );
 	                            });
 	                        '
 	    ] );?>
 	   
-	    <?= $form->field($model, 'task_type')->dropDownList(['WebSite'=>'WebSite','Web Application'=>'Web Application','Desktop Application'=>'Desktop Application']) ?>
+	    <?= $form->field($model, 'task_type')->dropDownList(['WebSite'=>'WebSite','Web Application'=>'Web Application','Desktop Application'=>'Desktop Application'],['prompt' => 'Select Type']) ?>
 	   	
 	   	<p><strong>Task Due Date</strong></p>    
 	   
@@ -71,6 +65,7 @@ use dosamigos\datepicker\DatePicker;
 	    
 	    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	   </div>
+	   </div>
 	   <div class="col-md-4">
 	     <div class="panel panel-default" style="padding-right: 10px;">
 	         <div class="panel-heading"> <div class="row">
@@ -81,7 +76,7 @@ use dosamigos\datepicker\DatePicker;
 		                <div class="col-md-2"><strong>Status</strong></div>
 		             </div></div>
 		         <div class="panel-body">
-		             <div id="demo1">
+		             <div id="demos">
 		                 
 		             </div>
 		         </div>

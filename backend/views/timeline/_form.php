@@ -17,6 +17,7 @@ use app\models\Timeline;
 	<div class="row">
 	    <?php $form = ActiveForm::begin(); ?>
 	   <div class="col-md-6">
+	   <div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
 	     <?php
 	     if (Yii::$app->user->can('superadmin')
 	     		|| (Yii::$app->user->can('administrator')
@@ -60,12 +61,13 @@ use app\models\Timeline;
 	    <?= $form->field($model, 'work_hour')->textInput(['maxlength' => true]) ?>
 	
 	    <?= $form->field($model, 'remarks')->textarea(['rows'=>6]) ?>
-	
+	 </div>
 	</div>
 	<div class="col-md-6">
+	<div  style="background-color: #cfe2f3; padding: 15px; margin-left: 5px; border-radius:5px;">
 	    <?= $form->field($model, 'complate_percent')->textInput(['maxlength' => true]) ?>
 	
-	    <?= $form->field($model, 'error')->textarea(['rows'=>4]) ?>
+	    <?= $form->field($model, 'error')->textarea(['rows'=>3]) ?>
 	
 	    <?= $form->field($model, 'status')->dropDownList(['1'=>'WIP','2'=>'Complate']) ?>
 	    
@@ -89,6 +91,7 @@ use app\models\Timeline;
 	    
 	     <div class="form-group">
 	        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	    </div>
 	    </div>
 	</div>
 	   

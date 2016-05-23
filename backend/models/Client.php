@@ -36,6 +36,7 @@ class Client extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+        	[['client_name','mobile', 'email','address'], 'required'],
             [['status'], 'integer'],
         	[['order'],'number'],
             [['client_name'], 'string', 'max' => 150],

@@ -7,6 +7,10 @@ return [
 				]
 		],
     'components' => [
+    		'EmailComponent' => [
+    				'class' => 'common\components\EmailComponent',
+    		],
+    		'email' => 'common\components\Mail',
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

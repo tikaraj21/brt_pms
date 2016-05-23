@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
          'columns' => $gridColumns,
          'containerOptions' => ['style'=>'overflow: auto; border:1px solid #ccc'], // only set when $responsive = false
-         
+        
          'toolbar' =>  [
          		
                      		'{export}',

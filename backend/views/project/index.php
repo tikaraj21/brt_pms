@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
             Modal::begin([
                       'id'=>'modal',
-                      'header'=>'<h4 style="text-align:center;"> <strong>Projects</strong></h4>',                    
                       'size'=>'modal-lg',
                 ]);
 

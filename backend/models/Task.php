@@ -40,7 +40,7 @@ class Task extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-        	[['project_id','task_title', 'task_due_date','task_hour', 'assign_to'], 'required'],
+        	[['project_id','task_title', 'task_due_date', 'assign_to','task_type'], 'required'],
             [['task_hour', 'status', 'crtd_by', 'updt_by', 'assign_to'], 'integer'],
             [['task_details'], 'string'],
             [['task_date', 'task_due_date', 'crtd_dt', 'updt_dt'], 'safe'],
